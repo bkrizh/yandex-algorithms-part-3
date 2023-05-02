@@ -1,13 +1,10 @@
-# id решения в Яндекс Контесте 86812464
+# id решения в Яндекс Контесте 86850793
 
-import random
-
-
-def quicksort(nums, fst, lst):
-    if fst >= lst:
-        return nums
-    i, j = fst, lst
-    pivot = nums[random.randint(fst, lst)]
+def quicksort(nums, left, right) -> None:
+    if left >= right:
+        return
+    i, j = left, right
+    pivot = nums[(left + right) // 2]
     while i <= j:
         while nums[i] < pivot:
             i += 1
@@ -16,8 +13,8 @@ def quicksort(nums, fst, lst):
         if i <= j:
             nums[i], nums[j] = nums[j], nums[i]
             i, j = i + 1, j - 1
-    quicksort(nums, fst, j)
-    quicksort(nums, i, lst)
+    quicksort(nums, left, j)
+    quicksort(nums, i, right)
 
 
 if __name__ == '__main__':
@@ -28,6 +25,6 @@ if __name__ == '__main__':
         part = input().split()
         part = [-int(part[1]), int(part[2]), part[0]]
         newpart.append(part)
-    quicksort(newpart, 0, len(newpart)-1)
+    quicksort(newpart, 0, len(newpart) - 1)
     for el in newpart:
         print(el[2])
